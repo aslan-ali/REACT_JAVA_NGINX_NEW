@@ -1,0 +1,24 @@
+version: "3"
+services:
+  java-back:
+    build:
+      context: /home/aslan/REACT_JAVA_NGINX/kotlin-spring-realworld-example-app
+      dockerfile: Dockerfile
+    image: java_image
+    container_name: java_app
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nginx:alpine
+    container_name: nginx_app
+    ports:
+      - 80:80
+    volumes:
+      - /etc/var/log:/var/log/nginx
+  react-front:
+    build:
+      context: /home/aslan/REACT_JAVA_NGINX/realworld-example
+      dockerfile: Dockerfile
+    image: react-front
+    container_name: react_app
